@@ -1,0 +1,16 @@
+{
+  "name": "excel",
+  "version": "1.0.0",
+  "description": "excel manipulation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "rc",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "xlsx-populate": "^1.16.0"
+  }
+}
