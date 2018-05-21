@@ -36,7 +36,17 @@ app.get('/xls', function(req,res) {
 app.post('/pdf',function(req,res) {
     var html=req.body.valo;
 //    console.log(html)    
-    pdf.create(html).toBuffer(function(err, buf){
+    var options={
+        format: "A4",
+        orientation:"portrait",
+        border: {
+            top: "20px",
+            bottom:"20px",
+            left: "20px",
+            right:"20px"
+        }
+    }
+    pdf.create(html,options).toBuffer(function(err, buf){
         res.setHeader('Content-type', 'application/pdf' );
         res.end(buf);
     })
