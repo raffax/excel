@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(bodyParser.json())
+//app.use(bodyParser.text({type: '*/*'}));
+
 const XlsxPopulate = require('xlsx-populate');
 var pdf = require('html-pdf');
 
@@ -32,8 +33,9 @@ app.get('/xls', function(req,res) {
         });    
 })
 
-app.get('/pdf',function(req,res) {
-    var html=req.query.valo;
+app.post('/pdf',function(req,res) {
+    var html=req.body.valo;
+//    console.log(html)    
     pdf.create(html).toBuffer(function(err, buf){
         res.setHeader('Content-type', 'application/pdf' );
         res.end(buf);
