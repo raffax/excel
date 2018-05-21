@@ -39,7 +39,6 @@ app.post('/pdf',function(req,res) {
     var options={
         format: "A4",
         orientation:"portrait",
-        zoomFactor:"1",
         border: {
             top: "20px",
             bottom:"20px",
