@@ -5,6 +5,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 //app.use(bodyParser.json())
 const XlsxPopulate = require('xlsx-populate');
+var pdf = require('html-pdf');
 
 app.get('/xls', function(req,res) {
     var listax=req.query.lista;
@@ -29,6 +30,24 @@ app.get('/xls', function(req,res) {
             })            
 
         });    
+})
+
+app.get('/pdf',function(req,res) {
+    var html=req.query.valo;
+    var options={
+        format:"A4",
+        orientation:"portrait",
+        border: {
+            top: "1.5in",            
+            right: "1.5in",
+            bottom: "1.5in",
+            left: "1.5in"
+          }
+    };
+    pdf.create(html,options).toBuffer(function(err, buf){
+        res.setHeader('Content-type', 'application/pdf' );
+        res.end(buf);
+    })
 })
 
 var porta=process.env.PORT || 3000;
