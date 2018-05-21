@@ -34,17 +34,7 @@ app.get('/xls', function(req,res) {
 
 app.get('/pdf',function(req,res) {
     var html=req.query.valo;
-    var options={
-        format:"A4",
-        orientation:"portrait",
-        border: {
-            top: "1.5in",            
-            right: "1.5in",
-            bottom: "1.5in",
-            left: "1.5in"
-          }
-    };
-    pdf.create(html,options).toBuffer(function(err, buf){
+    pdf.create(html).toBuffer(function(err, buf){
         res.setHeader('Content-type', 'application/pdf' );
         res.end(buf);
     })
