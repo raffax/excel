@@ -13,26 +13,26 @@ app.get('/xls', function(req,res) {
     var lista=listax.split(',');
     XlsxPopulate.fromFileAsync("./wtg_checklist_it.xlsx")
         .then(workbook => {
-            console.log("NAZIONALITA: "+req.query.naz);
+            var naz=req.query.naz+"";
+            console.log("NAZIONALITA: "+naz);
             console.log("Supervisore: "+req.query.super);
-            workbook.sheet("CHECKLIST").cell("c7").value(req.query.naz);
-            workbook.sheet("CHECKLIST").cell("d7").value(req.query.sito);
-            workbook.sheet("CHECKLIST").cell("d9").value(req.query.manuf);   
-            workbook.sheet("CHECKLIST").cell("e9").value(req.query.model);   
-            workbook.sheet("CHECKLIST").cell("e7").value(req.query.posto);
-            workbook.sheet("CHECKLIST").cell("f7").value(req.query.nturb);
- //           workbook.sheet("CHECKLIST").cell("i7").value(req.query.super);
-            workbook.sheet("CHECKLIST").cell("k7").value(req.query.manut);
- //           workbook.sheet("CHECKLIST").cell("i9").value(req.query.turbi);
-
+            workbook.sheet("CHECKLIST").cell("C7").value(naz);           
+            workbook.sheet("CHECKLIST").cell("D7").value(req.query.sito);
+            workbook.sheet("CHECKLIST").cell("D9").value(req.query.manuf);   
+            workbook.sheet("CHECKLIST").cell("E9").value(req.query.model);   
+            workbook.sheet("CHECKLIST").cell("E7").value(req.query.posto);
+            workbook.sheet("CHECKLIST").cell("F7").value(req.query.nturb);
+            workbook.sheet("CHECKLIST").cell("I7").value(req.query.super);
+            workbook.sheet("CHECKLIST").cell("K7").value(req.query.manut);
+            workbook.sheet("CHECKLIST").cell("I9").value(req.query.turbi);
             for(let i=0;i<lista.length;i++) {
             // Modify the workbook.
                 var x=lista[i];
                 var n=i+128;
                 var cella='I'+n;  
-                console.log(parseInt(x, 10));           
+ //               console.log(parseInt(x, 10));           
                 workbook.sheet("CHECKLIST").cell(cella).value(parseInt(x, 10));   
-                console.log(workbook.sheet("CHECKLIST").cell("B"+n).value())         
+ //               console.log(workbook.sheet("CHECKLIST").cell("B"+n).value())         
             // Log the value.
             }                        
             //return workbook.toFileAsync("./out.xlsx");
