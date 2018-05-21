@@ -13,6 +13,16 @@ app.get('/xls', function(req,res) {
     var lista=listax.split(',');
     XlsxPopulate.fromFileAsync("./wtg_checklist_it.xlsx")
         .then(workbook => {
+            workbook.sheet("CHECKLIST").cell("c7").value(req.query.naz);
+            workbook.sheet("CHECKLIST").cell("d7").value(req.query.sito);
+            workbook.sheet("CHECKLIST").cell("d9").value(req.query.manuf);   
+            workbook.sheet("CHECKLIST").cell("e9").value(req.query.model);   
+            workbook.sheet("CHECKLIST").cell("e7").value(req.query.posto);
+            workbook.sheet("CHECKLIST").cell("f7").value(req.query.nturb);
+            workbook.sheet("CHECKLIST").cell("i7").value(req.query.super);
+            workbook.sheet("CHECKLIST").cell("k7").value(req.query.manut);
+            workbook.sheet("CHECKLIST").cell("i9").value(req.query.turbi);
+
             for(let i=0;i<lista.length;i++) {
             // Modify the workbook.
                 var x=lista[i];
